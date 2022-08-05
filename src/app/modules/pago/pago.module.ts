@@ -20,6 +20,11 @@ import { TarjetaComponent } from 'src/app/components/metodos-de-pagos/tarjeta/ta
 import { FormcyberComponent } from 'src/app/components/formcyber/formcyber.component';
 import { ControlesModule } from '../controles/controles.module';
 import { CommonModule } from '@angular/common';
+import { AppPosComponent } from 'src/app/components/metodos-de-pagos/app-pos/app-pos.component';
+import { ApiService } from 'src/app/servicios/api.service';
+import { AuthenticationService } from 'src/app/servicios/authentication.service';
+import { PaymentService } from 'src/app/servicios/payment.service';
+import { WebsocketService } from 'src/app/servicios/websocket.service';
 
 
 @NgModule({
@@ -32,12 +37,12 @@ import { CommonModule } from '@angular/common';
     CajaComponent,
     TarjetaComponent,
     MensajeConfirmacionComponent,
+    AppPosComponent,
   ],
   imports: [
     CommonModule,
     PagoRoutingModule,
     ControlesModule,
-    
     FormsModule,
     ReactiveFormsModule,
     NgxSpinnerModule,
@@ -52,6 +57,10 @@ import { CommonModule } from '@angular/common';
   providers: [
     MDBSpinningPreloader,
     NgxSecureCookieService,
+    ApiService,
+    WebsocketService,
+    AuthenticationService,
+    PaymentService,
   ],
 })
 export class PagoModule { }

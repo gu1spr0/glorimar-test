@@ -12,4 +12,7 @@ export const environment = {
   URLbnb: 'https://lyon.pagatodo360.net:5501/apiqr/v1',
   URLsocket: 'https://lyon.pagatodo360.net:5700',
   IDKiosco: 'https://lyon.pagatodo360.net:5505',
+  UrlPos: 'http://161.35.119.130:4701',
+  usuarioPos: 'kiosco2',
+  passowordPos: '12345',
 };

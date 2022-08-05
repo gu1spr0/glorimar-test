@@ -32,7 +32,7 @@ export class MetodosDePagosComponent implements OnInit {
     this.encryptLocalstorage.setItem('metodoPago', this.metodoPago);
   }
   enviarPos() {
-    this.router.navigate(['pos'])
+    this.router.navigate(['pago', 'app-pos'])
     this.metodoPago = "ps";
     this.encryptLocalstorage.setItem('metodoPago', this.metodoPago);
   }
