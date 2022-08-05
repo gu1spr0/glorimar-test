@@ -1,0 +1,32 @@
+#empresaBusquedaBtn {
+    border-radius: 25px;
+    color: #0064dd;
+    background-color: white;
+    border: none;
+}
+
+#empresaTxt {
+    background-color: #c6c6c6;
+    border-radius: 25px;
+    margin-right: 5px;
+    border: none;
+    color: #424242;
+    box-shadow: 0px 10px 10px -6px #6E6E6E;
+}
+
+#empresaTxt:focus::placeholder {
+    color: transparent;
+}
+
+#enviar-codigoText:focus::placeholder {
+    color: transparent;
+}
+
+#enviar-codigoText {
+    background-color: #c6c6c6;
+    border-radius: 25px;
+    margin-right: 5px;
+    border: none;
+    color: #424242;
+    box-shadow: 0px 10px 10px -6px #6E6E6E;
+}

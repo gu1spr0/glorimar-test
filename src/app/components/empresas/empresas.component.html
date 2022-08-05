@@ -1,0 +1,41 @@
+<ngx-spinner bdColor="rgba(43,48,76,0.78)" color="#827c7c" type="timer">
+  <h2 style="color: white">CARGANDO</h2>
+</ngx-spinner>
+
+<div class="d-flex flex-column h-100">
+
+  <app-cabecera-empresa></app-cabecera-empresa>
+
+  <form autocomplete="off" [formGroup]="forma" (ngSubmit)="listadoEmpresas()">
+    <div class="d-flex justify-content-center">
+      <div class="md-form md-outline col-8">
+        <input mdbInput type="text" maxlength="15" id=empresaTxt
+          class="form-control form-control-lg text-center grey lighten-2 px-4" placeholder="EMPRESA"
+          formControlName="idEmpresa" style="font-size: 24px;">
+      </div>
+      <button id=empresaBusquedaBtn type="submit">
+        <i class="fas fa-search fa-3x"></i>
+      </button>
+    </div>
+
+    <div class="d-flex justify-content-center">
+      <small *ngIf="bandera" class="text-danger">
+        {{mensajeError}}
+      </small>
+    </div>
+  </form>
+
+  <div class="d-flex flex-wrap justify-content-center">
+    <div *ngFor="let empresa of listaempresa" class="p-4">
+      <button type="button" class="btn btn-rounded btn-shadow"
+        (click)="enviar(empresa.codigo,empresa.urlImagen,empresa.tipo_operacion,empresa.nombre)" mdbWavesEffect>
+        <img src="{{empresa.urlImagen}}" class="img-cover">
+      </button>
+    </div>
+  </div>
+
+  <div class="mt-auto">
+    <app-footerEmpresa></app-footerEmpresa>
+  </div>
+
+</div>

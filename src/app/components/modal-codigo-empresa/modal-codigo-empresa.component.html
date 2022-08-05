@@ -1,0 +1,40 @@
+<div class="modal-header" style="background-color: #003d99;">
+    <h1 style="color: white;">CÓDIGO KIOSCO</h1>
+    <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="modalRef.hide()">
+        <span aria-hidden="true" class="white-text">&times;</span>
+    </button>
+</div>
+<form [formGroup]="form">
+    <div class="modal-body">
+        <div class="text-center">
+            <div class="col-12">
+                <h1 style="color: #003d99;">Ingresa tu código de kiosco.</h1>
+                <p>
+                <h4 style="color: #c6c6c6;">Si no tienes tu código de kiosco cóntactate con nosotros.</h4>
+            </div>
+        </div>
+        <br>
+        <div class="col-12">
+            <div class="container-fluid">
+                <div class="row table-responsive">
+                    <div class="d-flex justify-content-center">
+                        <input id=enviar-codigoText class="input col-8" placeholder="INGRESA TU CÓDIGO"
+                            formControlName="codigo" name="codigo" type="password">
+                    </div>
+                    <br>
+                </div>
+            </div>
+        </div>
+        <div class="col-12">
+            <div class="d-flex justify-content-center">
+                <small *ngIf="banderaCodigoEmpresa" class="text-danger">Solicite su código de kiosco.</small>
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer justify-content-center">
+        <a (click)="enviarCodigoEmpresa()" type="button" rounded="true" style="background-color: #003d99;" mdbBtn
+            color="primary" outline="true" class="waves-effect" mdbWavesEffect>
+            <h2>ENVIAR</h2>
+        </a>
+    </div>
+</form>

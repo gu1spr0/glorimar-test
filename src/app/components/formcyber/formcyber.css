@@ -1,0 +1,92 @@
+#tarjetaPagarBtn {
+    border-radius: 25px;
+    color: #0064dd;
+    background-color: white;
+    border: none;
+    height: 75px;
+    width: 300px;
+}
+
+#numeroTarjetaText {
+    background-color: #c6c6c6;
+    border-radius: 25px;
+    margin-right: 5px;
+    border: none;
+    color: #424242;
+    font-size: 25px;
+    box-shadow: 0px 10px 10px -6px #6E6E6E;
+    height: 50px;
+    margin-bottom: 35px;
+}
+
+#cvcTarjetaText {
+    background-color: #c6c6c6;
+    border-radius: 25px;
+    margin-right: 35px;
+    border: none;
+    color: #424242;
+    font-size: 25px;
+    box-shadow: 0px 10px 10px -6px #6E6E6E;
+    height: 50px;
+    margin-bottom: 35px;
+}
+
+#fechavTarjetaText {
+    background-color: #c6c6c6;
+    border-radius: 25px;
+    margin-right: 5px;
+    border: none;
+    color: #424242;
+    font-size: 25px;
+    box-shadow: 0px 10px 10px -6px #6E6E6E;
+    height: 50px;
+    margin-bottom: 35px;
+}
+
+#ftdiaText {
+    background-color: #c6c6c6;
+    border-radius: 25px;
+    margin-right: 5px;
+    border: none;
+    color: #424242;
+    font-size: 25px;
+    box-shadow: 0px 10px 10px -6px #6E6E6E;
+    height: 50px;
+    margin-bottom: 35px;
+}
+
+#ftmesText {
+    background-color: #c6c6c6;
+    border-radius: 25px;
+    margin-right: 5px;
+    border: none;
+    color: #424242;
+    font-size: 25px;
+    box-shadow: 0px 10px 10px -6px #6E6E6E;
+    height: 50px;
+    margin-bottom: 35px;
+}
+
+#ftanoText {
+    background-color: #c6c6c6;
+    border-radius: 25px;
+    margin-right: 5px;
+    border: none;
+    color: #424242;
+    font-size: 25px;
+    box-shadow: 0px 10px 10px -6px #6E6E6E;
+    height: 50px;
+    margin-bottom: 35px;
+}
+
+#numeroTarjetaText:focus::placeholder {
+    color: transparent;
+}
+
+#cvcTarjetaText:focus::placeholder {
+    color: transparent;
+}
+
+#fechavTarjetaText:focus::placeholder {
+    color: transparent;
+}

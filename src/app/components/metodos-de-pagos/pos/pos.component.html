@@ -1,0 +1,111 @@
+<ngx-spinner bdColor="rgba(43,48,76,0.78)" color="#827c7c" type="timer">
+    <h2 style="color: white">CARGANDO</h2>
+</ngx-spinner>
+<app-cabecera> </app-cabecera>
+
+<br>
+<br>
+
+<div *ngIf="valor == 1">
+    <div class="text-center">
+        <div class="row-cols-3">
+            <div class="col-12">
+                <div class="card-title">
+                    <div class="row justify-content-center">
+                        <div class="col-sm-12 text-center">
+                            <img src="./assets/img/inserteDigite.gif" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div *ngIf="valor == 2">
+    <div class="text-center">
+        <div class="row-cols-3">
+            <div class="col-12">
+                <div class="card-title">
+                    <div class="row justify-content-center" style="margin-top: 50px;">
+                        <div class="col-sm-12 text-center">
+                            <img src="./assets/img/transExitosa.png" />
+                        </div>
+                    </div>
+                    <div class="col-12" style="margin-top: 50px;">
+                        <label style="color: #003d99;font-size: 50px;">Ha realizado un pago de Bs. {{deudaMonto}}</label>
+                    </div>
+                    <div class="col-12">
+                        <label style="color: #003d99;">Imprimir detalle:</label>
+                        <ul class="list-unstyled list-inline">
+                            <li class="list-inline-item">
+                                <a (click)="imprimirRecibo()" style="box-shadow: 0px 0px 10px 10px #6E6E6E;margin: 1rem;" mdbBtn color="white" outline="true" rounded="true" class="waves-light" mdbWavesEffect>
+                                    <label style="color: #003d99;height: 35px;width: 90px;font-size: 30px;text-align: center;">SI</label>
+                                </a>
+                            </li>
+                            <li class="list-inline-item">
+                                <a (click)="volverPantallaInicio()" style="box-shadow: 0px 0px 10px 10px #6E6E6E;margin: 1rem;" mdbBtn color="white" outline="true" rounded="true" class="waves-light" mdbWavesEffect>
+                                    <label style="color: #003d99;height: 35px;width: 90px;font-size: 30px;text-align: center;">NO</label>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div *ngIf="valor == 3">
+    <div class="text-center">
+        <div class="row-cols-3">
+            <div class="col-12">
+                <div class="card-title">
+                    <div class="row justify-content-center">
+                        <div class="col-sm-12 text-center" style="margin-top: 50px;">
+                            <img src="./assets/img/transInsuficiente.png" />
+                        </div>
+                        <div class="text-center" style="margin-top: 30px;">
+                            <ul class="list-unstyled list-inline">
+                                <li class="list-inline-item">
+                                    <a (click)="volverPantallaInicio()" style="box-shadow: 0px 0px 10px 10px #6E6E6E;margin: 1rem;" mdbBtn color="white" outline="true" rounded="true" class="waves-light" mdbWavesEffect>
+                                        <label style="color: #003d99;height: 55px;width: 230px;font-size: 40px;text-align: center;">ACEPTAR</label>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div *ngIf="valor == 4">
+    <div class="text-center">
+        <div class="row-cols-3">
+            <div class="col-12">
+                <div class="card-title">
+                    <div class="row justify-content-center">
+                        <div class="col-sm-12 text-center" style="margin-top: 50px;">
+                            <img src="./assets/img/transError.png" />
+                        </div>
+                        <div class="text-center" style="margin-top: 30px;">
+                            <ul class="list-unstyled list-inline">
+                                <li class="list-inline-item">
+                                    <a (click)="volverPantallaInicio()" style="box-shadow: 0px 0px 10px 10px #6E6E6E;margin: 1rem;" mdbBtn color="white" outline="true" rounded="true" class="waves-light" mdbWavesEffect>
+                                        <label style="color: #003d99;height: 55px;width: 230px;font-size: 40px;text-align: center;">ACEPTAR</label>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<app-footerPt></app-footerPt>

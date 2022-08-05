@@ -1,0 +1,15 @@
+export const environment = {
+  environment: 'prod',
+  production: true,
+  Url: 'https://lyon.pagatodo360.net:5700',
+  URLService: 'https://lyon.pagatodo360.net:5500',
+  grant_type: 'password',
+  refresh: 'refresh_token',
+  client_id: 'jwtclientC0br4nz@PGT360',
+  client_secret: 'secretkeyC0br4nz@PGT360',
+  URLRecibo: 'https://lyon.pagatodo360.net:5701',
+  URLcyber: 'https://testsecureacceptance.cybersource.com/silent/pay',
+  URLbnb: 'https://lyon.pagatodo360.net:5501/apiqr/v1',
+  URLsocket: 'https://lyon.pagatodo360.net:5700',
+  IDKiosco: 'https://lyon.pagatodo360.net:5505',
+};

@@ -1,0 +1,26 @@
+<div *ngIf="tipoOperacionKiosko === 'ECOMMERCE'">
+  <div class="d-flex justify-content-center flex-wrap px-4">
+    <div class="invisible" style="width: 170px;" *ngIf="banderaCarritoNavegacion"></div>
+    <a class="mx-auto" target="_blank">
+      <img [src]="urlImagen" height="100" width="300"
+        style="margin-top: 30px;object-fit: cover;object-position: center;">
+    </a>
+    <div class="invisible" style="width: 170px;" *ngIf="listaPedido.length < 1 && banderaCarritoNavegacion">
+    </div>
+    <div *ngIf="listaPedido.length > 0 && banderaCarritoNavegacion" style="width: 170px;">
+      <a (click)="irCarrito()">
+        <img src="../assets/img/carrito.png" height="120" width="120" style="margin-top: 30px;">
+      </a>
+      <span class="badge badge-pill badge-danger align-top mt-5" style="font-size: 20px;">{{cantidadCarrito}}</span>
+    </div>
+  </div>
+</div>
+
+<div *ngIf="tipoOperacionKiosko === 'COBRANZA'">
+  <div class="d-flex justify-content-center">
+    <a target="_blank">
+      <img [src]="urlImagen" height="100" width="300"
+        style="margin-top: 30px;object-fit: contain;object-position: center;">
+    </a>
+  </div>
+</div>

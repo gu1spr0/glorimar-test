@@ -1,0 +1,56 @@
+/* Style the video: 100% width and height to cover the entire window */
+
+#videoPantallaDescanso {
+    position: fixed;
+    right: 0;
+    bottom: 0;
+    min-width: 100%;
+    width: 1280px;
+    min-height: 100%;
+    height: 1024px;
+}
+
+
+/* Add some content at the bottom of the video/page */
+
+.content {
+    position: fixed;
+    bottom: 0;
+    background: rgba(255, 255, 255, 0.5);
+    color: #f1f1f1;
+    width: 100%;
+    padding: 20px;
+}
+
+
+/* Style the button used to pause/play the video */
+
+#btnPantallaDescanso {
+    width: 200px;
+    font-size: 32px;
+    padding: 10px;
+    border: none;
+    background: #003d99;
+    color: #c6c6c6;
+    cursor: pointer;
+    border-radius: 35px;
+    border: none;
+}
+
+#btnPantallaDescanso:hover {
+    background: #c6c6c6;
+    color: #003d99;
+}
+
+#enviar-codigoText:focus::placeholder {
+    color: transparent;
+}
+
+#enviar-codigoText {
+    background-color: #c6c6c6;
+    border-radius: 25px;
+    margin-right: 5px;
+    border: none;
+    color: #424242;
+    box-shadow: 0px 10px 10px -6px #6E6E6E;
+}

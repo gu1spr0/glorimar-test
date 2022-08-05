@@ -1,0 +1,94 @@
+<ngx-spinner bdColor="rgba(43,48,76,0.78)" color="#827c7c" type="timer">
+    <h2 style="color: white">CARGANDO</h2>
+</ngx-spinner>
+<app-cabecera>
+</app-cabecera>
+
+<br>
+<br>
+
+
+<div *ngIf="EstadoQr === 2">
+    <div class="text-center">
+        <div class="row-cols-2">
+            <div class="col-12">
+                <label style="color: #c6c6c6; font-size: 45px;">CÓDIGO QR
+                </label>
+            </div>
+        </div>
+    </div>
+    <br>
+    <br>
+    <br>
+    <br>
+    <div class="text-center">
+        <label style="color: #003d99;font-size: 55px;">PAGO EXITOSO</label>
+    </div>
+</div>
+<div *ngIf="EstadoQr === 1">
+    <div class="text-center">
+        <div class="col-12">
+            <h1 style="color: #003d99;">Si has realizado tu pago desde la aplicación móvil de tú banco,vuelve a consultar el estado de tu código QR.</h1>
+        </div>
+    </div>
+    <div class="text-center">
+        <div class="row-cols-2">
+            <div class="col-12">
+                <label style="color: #c6c6c6; font-size: 45px;">CÓDIGO QR
+                </label>
+            </div>
+        </div>
+    </div>
+
+    <br>
+    <br>
+    <div class="text-center">
+        <label style="color: #003d99;font-size: 55px;">CÓDIGO QR NO PAGADO</label>
+    </div>
+    <br>
+    <br>
+    <div class="text-center">
+        <ul class="list-unstyled list-inline text-center py-2">
+            <li class="list-inline-item">
+                <a mdbBtn (click)="consultarCodigoQr()" style=" height: 75px;width: 255px;text-align: center;box-shadow: 0px 0px 10px 10px #6E6E6E;" color="white" outline="true" rounded="true" class="waves-light" mdbWavesEffect>
+                    <h1 style="color: #003d99;margin-top: 15px;">Consultar</h1>
+                </a>
+            </li>
+        </ul>
+    </div>
+</div>
+
+<div *ngIf="EstadoQr === 3">
+    <div class="text-center">
+        <div class="col-12">
+            <h1 style="color: #003d99;">Si tu código QR ha expirado,vuelve a generar uno nuevo.</h1>
+        </div>
+    </div>
+    <div class="text-center">
+        <div class="row-cols-2">
+            <div class="col-12">
+                <label style="color: #c6c6c6; font-size: 45px;">CÓDIGO QR
+                </label>
+            </div>
+        </div>
+    </div>
+    <br>
+    <br>
+    <div class="text-center">
+        <label style="color: #003d99;font-size: 55px;">CÓDIGO QR EXPIRADO</label>
+    </div>
+    <br>
+    <br>
+    <div class="text-center">
+        <ul class="list-unstyled list-inline text-center py-2">
+            <li class="list-inline-item">
+                <a mdbBtn (click)="enviarNuevoQr()" style="height: 75px;width: 255px;text-align: center;box-shadow: 0px 0px 10px 10px #6E6E6E;" color="white" outline="true" rounded="true" class="waves-light" mdbWavesEffect>
+                    <h1 style="color: #003d99;margin-top: 15px;">Generar</h1>
+                </a>
+            </li>
+        </ul>
+    </div>
+
+</div>
+
+<app-footerPt></app-footerPt>

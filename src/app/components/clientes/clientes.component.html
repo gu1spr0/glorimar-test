@@ -1,0 +1,25 @@
+<div class="d-flex flex-column h-100">
+	<app-cabecera></app-cabecera>
+
+	<form autocomplete="off" [formGroup]="forma" (ngSubmit)="enviar()">
+		<div class="d-flex justify-content-center">
+			<div class="md-form md-outline col-8">
+				<input mdbInput type="text" maxlength="10" id=clienteTxt
+					class="form-control form-control-lg text-center grey lighten-2 px-4" placeholder="Ingrese código de cliente"
+					formControlName="idCliente" style="font-size: 24px;">
+			</div>
+			<button id=clienteBusquedaBtn type="submit">
+				<i class="fas fa-search fa-3x" aria-hidden="true"></i>
+			</button>
+		</div>
+		<div class="d-flex justify-content-center">
+			<h2 *ngIf="idClienteNoValido || erorrListarDeudas" class="text-danger">
+				Código cliente no valido.
+			</h2>
+		</div>
+	</form>
+
+	<div class="mt-auto">
+		<app-footerPt></app-footerPt>
+	</div>
+</div>

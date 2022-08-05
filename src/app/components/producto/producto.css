@@ -1,0 +1,95 @@
+input[type="number"] {
+    -webkit-appearance: textfield;
+    -moz-appearance: textfield;
+    appearance: textfield;
+}
+
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+}
+
+.number-input {
+    margin: 1rem;
+}
+
+.number-input button {
+    -webkit-appearance: none;
+    background-color: transparent;
+    border: none;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    margin: 20;
+    position: relative;
+}
+
+.number-input button:before,
+.number-input button:after {
+    display: inline-block;
+    position: absolute;
+    content: '';
+    height: 4px;
+    transform: translate(-50%, -50%);
+}
+
+.number-input button.plus:after {
+    transform: translate(-50%, -50%) rotate(90deg);
+}
+
+.number-input input[type=number] {
+    text-align: center;
+}
+
+.md-number-input.number-input {
+    border: 4px solid #ddd;
+    border-radius: 30px;
+    width: 200px;
+    height: 60px;
+    box-shadow: 0px 0px 5px 5px #6E6E6E;
+    margin-left: 50px;
+}
+
+.md-number-input.number-input button {
+    outline: none;
+    width: 3rem;
+    height: 2rem;
+    padding-top: .8rem;
+}
+
+.md-number-input.number-input button.minus {
+    padding-left: 8px;
+}
+
+.md-number-input.number-input button.plus {
+    padding-left: 2px;
+}
+
+
+/*signos */
+
+.md-number-input.number-input button:before,
+.md-number-input.number-input button:after {
+    width: 2rem;
+    background-color: #003d99;
+}
+
+.md-number-input.number-input input[type=number] {
+    max-width: 5rem;
+    padding: .5rem;
+    border: solid #ddd;
+    border-width: 0 2px;
+    font-size: 2rem;
+    height: 3rem;
+    font-weight: bold;
+    outline: none;
+    color: #003d99;
+}
+
+@media not all and (min-resolution:.001dpcm) {
+    @supports (-webkit-appearance: none) and (stroke-color: transparent) {
+        .number-input.md-number-input.safari_only button:before, .number-input.md-number-input.safari_only button:after {
+            margin-top: -.6rem;
+        }
+    }
+}

@@ -1,0 +1,35 @@
+<ngx-spinner bdColor="rgba(43,48,76,0.78)" color="#827c7c" type="timer">
+  <h2 style="color: white">CARGANDO</h2>
+</ngx-spinner>
+
+<div class="d-flex flex-column h-100">
+  <app-cabecera></app-cabecera>
+
+  <div class="d-flex flex-column flex-fill justify-content-center align-items-center">
+    <div *ngIf="bandera === true">
+      <div class="text-center">
+        <label style="color: #003d99;font-size: 55px;">Pedido enviado</label>
+      </div>
+      <div class="text-center">
+        <div class="col-12">
+          <h1 style="color: #003d99;">Ahora puedes pasar a caja a pagar tu Pedido.</h1>
+        </div>
+      </div>
+    </div>
+
+    <div *ngIf="bandera === false">
+      <div class="text-center">
+        <label style="color: #003d99;font-size: 55px;">Pedido No enviado</label>
+      </div>
+      <div class="text-center">
+        <div class="col-12">
+          <h1 style="color: #003d99;">Ocurrio un error, vuelva a seleccionar su metodo de Pago.</h1>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="mt-auto">
+    <app-footerPt></app-footerPt>
+  </div>
+</div>

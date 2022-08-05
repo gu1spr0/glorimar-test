@@ -1,0 +1,129 @@
+<ngx-spinner bdColor="rgba(43,48,76,0.78)" color="#827c7c" type="timer">
+  <h2 style="color: white">CARGANDO</h2>
+</ngx-spinner>
+
+<div class="d-flex flex-column h-100">
+  <app-cabecera></app-cabecera>
+
+  <div *ngIf="listaDeudas?.length == 0 || listaDeudas == null" class="d-flex flex-column text-center mx-auto">
+    <label style="color: #003d99; font-size: 25px">NO TIENE DEUDAS</label>
+  </div>
+
+  <div *ngIf="listaDeudas?.length > 0" class="d-flex flex-column text-center mx-auto">
+    <label style="color: #003d99; font-size: 40px">
+      {{ listaDeudas[0].nombre }} {{ listaDeudas[0].apellidos }}
+    </label>
+    <label style="color: #003d99; font-size: 25px">SELECCIONA LA DEUDA A PAGAR</label>
+    <h2 class="text-danger" *ngIf="!seleccionado">{{ mensajeAlerta }}</h2>
+    <h2 class="invisible" *ngIf="seleccionado">invisible</h2>
+  </div>
+
+  <div *ngIf="listaDeudas?.length > 0" class="container">
+    <div class="table-wrapper-scroll-y my-custom-scrollbar">
+      <table class="table scrollable">
+        <thead style="background-color: #003d99">
+          <tr>
+            <th style="
+                text-align: center;
+                color: white;
+                padding: 0.5rem;
+                border: 5px solid white;
+                height: 60px;
+                width: 340px;
+                vertical-align: middle;
+              " scope="col">
+              <label style="font-size: 28px">PRODUCTO</label>
+            </th>
+            <th style="
+                text-align: center;
+                color: white;
+                padding: 0.5rem;
+                border: 5px solid white;
+                width: 100px;
+                vertical-align: middle;
+              " scope="col">
+              <label style="font-size: 28px">MONTO/CUOTA USD.</label>
+            </th>
+            <th style="
+                text-align: center;
+                color: white;
+                padding: 0.5rem;
+                border: 5px solid white;
+                width: 100px;
+                vertical-align: middle;
+              " scope="col">
+              <label style="font-size: 28px">MONTO/CUOTA BS.</label>
+            </th>
+            <th style="
+                text-align: center;
+                color: white;
+                padding: 0.5rem;
+                border: 5px solid white;
+                height: 60px;
+                width: 100px;
+                vertical-align: middle;
+              " scope="col">
+              <label style="font-size: 28px">SEL.</label>
+            </th>
+          </tr>
+        </thead>
+        <tbody style="background-color: #c6c6c6">
+          <tr *ngFor="let deuda of listaDeudas; let i = index">
+            <td style="padding: 0.5rem; border: 5px solid white">
+              <label class="d-inline-block text-truncate" style="
+                  margin-left: 20px;
+                  font-size: 20px;
+                  max-width: 400px;
+                ">{{ deuda.detalle }}</label>
+            </td>
+            <td style="
+                padding: 0.5 rem;
+                border: 5px solid white;
+                text-align: right;
+              ">
+              <label style="font-size: 20px">{{ deuda.monto | number: "1.2-2" }}
+                {{ deuda.montoUsd | number: "1.2-2" }}</label>
+            </td>
+            <td style="
+                padding: 0.5 rem;
+                border: 5px solid white;
+                text-align: right;
+              ">
+              <label style="font-size: 20px">{{ deuda.monto | number: "1.2-2" }}
+                {{ deuda.montoBs | number: "1.2-2" }}</label>
+            </td>
+            <td style="
+                padding: 0.5rem;
+                border: 5px solid white;
+                text-align: center;
+              ">
+              <div class="custom-control custom-checkbox px-2">
+                <input type="checkbox" class="custom-control-input" id="{{ i }}" value="{{ deuda.idDeuda }}"
+                  (change)="onCheckboxChange($event)">
+                <label class="custom-control-label" for="{{ i }}"></label>
+              </div>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <button (click)="enviar()" class="float-right mr-2" style="
+        background-color: #003d99;
+        text-align: center;
+        color: white;
+        height: 60px;
+        width: 180px;
+        border: none;
+        font-size: 35px;
+        box-shadow: 0px 10px 10px -6px #6e6e6e;
+        margin-top: 10px;
+      ">
+      PAGAR
+    </button>
+  </div>
+
+  <div class="mt-auto">
+    <app-footerPt></app-footerPt>
+  </div>
+</div>

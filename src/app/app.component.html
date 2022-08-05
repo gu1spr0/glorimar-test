@@ -1,0 +1,40 @@
+<router-outlet>
+
+</router-outlet>
+
+<div mdbModal #modalInactividad="mdbModal" class="modal fade" id="modalInactividadModalTop" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+        <!--Content-->
+        <div class="modal-content">
+            <!--Header-->
+            <div class="modal-header" style="background-color: #003d99;">
+                <h1 style="color: white;">INFORMACION</h1>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="modalInactividad.hide()">
+          <span aria-hidden="true" class="white-text">&times;</span>
+        </button>
+            </div>
+
+            <!--Body-->
+            <div class="modal-body">
+                <div class="text-center">
+                    <h1 style="color: #c6c6c6;">¿Sigues ahí?</h1>
+                </div>
+                <div class="text-center">
+                    <h2 style="color: #c6c6c6;">Seras enviado a nuestra pagina de Inicio en
+                        <h1 style="color: #ef1c0c;">{{idleState}}</h1> segundos.</h2>
+                </div>
+            </div>
+
+            <!--Footer-->
+            <div class="modal-footer justify-content-center">
+                <a type="button" rounded="true" style="background-color: #003d99;margin-right: 20px;" mdbBtn color="primary" outline="true" class="waves-effect" mdbWavesEffect (click)="modalInactividad.hide()">
+                    <h2>Quedarse</h2>
+                </a>
+                <a type="button" rounded="true" style="background-color: #003d99;" mdbBtn color="primary" outline="true" class="waves-effect" mdbWavesEffect (click)="irPantallaDescanso()">
+                    <h2>Volver a Inicio</h2>
+                </a>
+            </div>
+        </div>
+        <!--/.Content-->
+    </div>
+</div>

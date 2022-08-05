@@ -1,0 +1,88 @@
+<ngx-spinner bdColor="rgba(43,48,76,0.78)" color="#827c7c" type="timer">
+  <h2 style="color: white">CARGANDO</h2>
+</ngx-spinner>
+
+<div class="d-flex flex-column h-100">
+  <app-cabecera></app-cabecera>
+
+  <div class="d-flex flex-column flex-fill justify-content-start align-items-center">
+    <label class="text-center" style="color: #003d99; font-size: 38px;">INGRESA LOS DATOS DE TÚ TARJETA</label>
+    <label style="color: #003d99;font-size: 25px;">Monto a cancelar</label>
+    <label style="font-size: 25px;" class="badge badge-primary mb-3">{{amount}} {{moneda}}</label>
+    <div class="w-75">
+      <div class="form-row">
+        <div class="col-lg-12">
+          <input mdbInput required type="text" [specialCharacters]="[ '[' ,']' , '-' ]" mask="0000-0000-0000-0000"
+            id=numeroTarjetaText class="form-control text-center grey lighten-2" [(ngModel)]='input1'
+            placeholder="NÚMERO DE TARJETA">
+        </div>
+      </div>
+      <div class="form-row justify-content-around">
+        <div class="col-lg-4">
+          <div class="form-row">
+            <div class="col-12">
+              <h3 class="invisible">invisible</h3>
+            </div>
+            <div class="col">
+              <input required maxlength="3" minlength="3" id=cvcTarjetaText [(ngModel)]='input2'
+                class="form-control text-center grey lighten-2" placeholder="CVC"
+                [type]="cvctipotexto ? 'text' : 'password'">
+            </div>
+            <mdb-icon fas [icon]="cvctipotexto ? 'eye-slash' : 'eye'" size="3x" class="grey-text mt-2"
+              (click)="mostrartextocvc()"></mdb-icon>
+          </div>
+        </div>
+        <div class="col-lg-6">
+          <div class="form-row">
+            <div class="col-12">
+              <h3 class="text-center">FECHA DE VENCIMIENTO</h3>
+            </div>
+            <div class="col-lg-6">
+              <select required [(ngModel)]='ftmesText' id=ftmesText class="form-control grey lighten-2 text-center">
+                <option value="" disabled selected>Mes</option>
+                <option [value]="opt.value" *ngFor="let opt of meses">
+                  {{opt.label}}
+                </option>
+              </select>
+            </div>
+            <div class="col-lg-6">
+              <select required id=ftanoText [(ngModel)]='ftanoText' class="form-control grey lighten-2 text-center">
+                <option value="" disabled selected>Año</option>
+                <option [value]="opt.value" *ngFor="let opt of years">
+                  {{opt.label}}
+                </option>
+              </select>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="form-row mb-5">
+        <div class="col-12 text-center">
+          <div class="form-check form-check-inline mx-4">
+            <input type="radio" class="form-check-input" id="tipo1" value="001" mdbInput [(ngModel)]='card_type'>
+            <label class="form-check-label py-2 pl-5" for="tipo1" style="color: #003d99; font-size: 20px;">
+              Visa</label>
+            <mdb-icon fab icon="cc-visa" class="indigo-text mt-2 ml-1" size="3x"></mdb-icon>
+          </div>
+          <div class="form-check form-check-inline mx-4">
+            <input type="radio" class="form-check-input" id="tipo2" value="002" mdbInput [(ngModel)]='card_type'>
+            <label class="form-check-label py-2 pl-5" for="tipo2" style="color: #003d99; font-size: 20px;">
+              MasterCard</label>
+            <mdb-icon fab icon="cc-mastercard" class="indigo-text mt-2 ml-1" size="3x"></mdb-icon>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <button type="button" class="btn btn-rounded btn-shadow" (click)="pagoCyber()" mdbWavesEffect
+      style="width: 230px; height: 80px;">
+      <span class="font-weight-bold my-auto" style="color: #003d99;font-size: 30px;">
+        PAGAR
+      </span>
+    </button>
+  </div>
+
+  <div class="mt-auto">
+    <app-footerPt></app-footerPt>
+  </div>
+</div>

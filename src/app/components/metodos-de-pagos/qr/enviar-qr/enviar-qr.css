@@ -1,0 +1,12 @@
+#enviar-qrText:focus::placeholder {
+    color: transparent;
+}
+
+#enviar-qrText {
+    background-color: #c6c6c6;
+    border-radius: 25px;
+    margin-right: 5px;
+    border: none;
+    color: #424242;
+    box-shadow: 0px 10px 10px -6px #6E6E6E;
+}

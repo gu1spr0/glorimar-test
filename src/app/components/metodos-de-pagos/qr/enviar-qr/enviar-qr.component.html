@@ -1,0 +1,59 @@
+<ngx-spinner bdColor="rgba(43,48,76,0.78)" color="#827c7c" type="timer">
+    <h2 style="color: white">CARGANDO</h2>
+</ngx-spinner>
+
+<app-cabecera></app-cabecera>
+
+<br>
+<br>
+<div class="text-center">
+    <div class="row-cols-2">
+        <div class="col-12">
+            <label style="color: #c6c6c6;font-size: 30px;">CÓDIGO QR</label>
+        </div>
+    </div>
+</div>
+<br>
+<div class="text-center">
+    <div class="col-12">
+        <h1 style="color: #003d99;">Ingresa el correo donde se enviara el código QR.</h1>
+    </div>
+</div>
+
+<br>
+
+<form autocomplete="off" [formGroup]="forma">
+    <div class="col-12">
+        <div class="container-fluid">
+            <div class="row table-responsive">
+                <div class="d-flex justify-content-center">
+                    <input id=enviar-qrText class="input col-8" value="{{emailCliente}}" placeholder="INGRESA TU CORREO" type="text" formControlName="emailCliente" [class.is-invalid]="emailClienteNoValido">
+                </div>
+                <br>
+            </div>
+        </div>
+    </div>
+    <div class="col-12">
+        <div class="d-flex justify-content-center">
+            <small *ngIf="emailClienteNoValido" class="text-danger">Correo no valido.</small>
+        </div>
+    </div>
+    <div class="col-12">
+        <div class="d-flex justify-content-center">
+            <small *ngIf="banderaEstadoEnvioCorreo" class="text-danger">Correo enviado.</small>
+        </div>
+    </div>
+</form>
+
+
+
+<div class="text-center">
+    <ul class="list-unstyled list-inline text-center py-2">
+        <li class="list-inline-item">
+            <a mdbBtn (click)="enviarQr()" style=" height: 75px;width: 255px;text-align: center;box-shadow: 0px 0px 7px 7px #6E6E6E;" color="white" outline="true" rounded="true" class="waves-light" mdbWavesEffect>
+                <label style="color: #003d99;margin-top: 10px;font-size: 30px;">ENVIAR</label>>
+            </a>
+        </li>
+    </ul>
+</div>
+<app-footerPt></app-footerPt>

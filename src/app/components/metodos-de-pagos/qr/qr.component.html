@@ -1,0 +1,63 @@
+<ngx-spinner bdColor="rgba(43,48,76,0.78)" color="#827c7c" type="timer">
+  <h2 style="color: white">CARGANDO</h2>
+</ngx-spinner>
+
+<div class="d-flex flex-column h-100">
+  <app-cabecera></app-cabecera>
+
+  <div class="d-flex flex-column flex-fill justify-content-start align-items-center">
+    <h1 class="text-center mb-5" style="color: #003d99;">
+      Para completar tú pago deberás ingresar a tú cuenta mediante la aplicación
+      móvil de tú banco y seleccionar la opción QR SIMPLE para escanear o cargar el código.</h1>
+    <label style="color: #c6c6c6;font-size: 45px;">CÓDIGO QR</label>
+    <img src={{base64}} />
+    <div *ngIf="EstadoQr === 2">
+      <label style="color: #c6c6c6;font-size: 35px;">PAGO EXITOSO</label>
+    </div>
+    <div *ngIf="EstadoQr === 1">
+      <label style="color: #c6c6c6;font-size: 35px;">CÓDIGO QR NO PAGADO</label>
+    </div>
+    <div *ngIf="EstadoQr === 3">
+      <label style="color: #c6c6c6;font-size: 35px;">CÓDIGO QR EXPIRADO</label>
+    </div>
+
+    <button type="button" class="btn btn-rounded btn-shadow" (click)="enviarCorreoModal()" mdbWavesEffect>
+      <span class="font-weight-bold my-auto" style="color: #003d99;font-size: 30px;">ENVIAR QR</span>
+    </button>
+  </div>
+
+  <div mdbModal #modalCorreo="mdbModal" class="modal fade" id="modalCorreoModalTop" tabindex="-1" role="dialog"
+    aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+      <div class="modal-content">
+        <div class="modal-header" style="background-color: #003d99;">
+          <h1 style="color: white;">ENVIAR CORREO</h1>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="modalCorreo.hide()">
+            <span aria-hidden="true" class="white-text">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <div class="text-center">
+            <h1 style="color: #003d99;">Ingresa el correo donde se enviara el código QR.</h1>
+            <input mdbInput type="text" id="enviar-qrText" [(ngModel)]="emailCliente" placeholder="INGRESA TU CORREO"
+              style="font-size: 24px;" value="{{emailCliente}}"
+              class="form-control form-control-lg text-center grey lighten-2 w-75 px-4 my-2 mx-auto">
+            <h2 class="text-success my-3" *ngIf="banderaEstadoEnvioCorreo">
+              Correo enviado, regresando al inicio en {{cuentaRegresiva}}...</h2>
+            <h2 class="invisible my-3" *ngIf="!banderaEstadoEnvioCorreo">invisible</h2>
+          </div>
+        </div>
+        <div class="text-center mb-3">
+          <button type="button" class="btn btn-outline-default btn-rounded" [disabled]="banderaEstadoEnvioCorreo"
+            (click)="enviarQr()">
+            <span class="font-weight-bold my-0" style="color: #003d99;font-size: 20px;">ENVIAR</span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="mt-auto">
+    <app-footerPt></app-footerPt>
+  </div>
+</div>

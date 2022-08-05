@@ -1,0 +1,71 @@
+<ngx-spinner bdColor="rgba(43,48,76,0.78)" color="#827c7c" type="timer">
+  <h2 style="color: white">CARGANDO</h2>
+</ngx-spinner>
+
+<div class="d-flex flex-column h-100">
+  <app-cabecera></app-cabecera>
+
+  <div class="d-flex flex-column flex-fill justify-content-start align-items-center">
+    <h1 class="text-center mb-5" style="color: #003d99;">
+      Para completar tú pago deberás ingresar los siguientes datos, si estas registrado presiona buscar para
+      autocompletar los datos.</h1>
+    <form class="w-75" autocomplete="off" [formGroup]="forma">
+      <div class="form-row justify-content-center">
+        <div class="col-lg-8 col">
+          <input mdbInput type="text" class="form-control grey lighten-2 px-4 mb-3" id="idCi" formControlName="idCi"
+            [class.is-invalid]="idCiNoValido" placeholder="INGRESA TU CARNET DE IDENTIDAD">
+        </div>
+        <button id=personaBusquedaBtn (click)="datosPersona()">
+          <i class="fas fa-search fa-3x" aria-hidden="true"></i>
+        </button>
+        <div class="col-12 mb-3">
+          <h2 class="text-danger text-center" *ngIf="banderMensaje">
+            No se encuentra registrado, porfavor ingrese sus datos.</h2>
+          <h2 class="invisible" *ngIf="!banderMensaje">
+            No se encuentra registrado, porfavor ingrese sus datos.</h2>
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="col-lg-6">
+          <input mdbInput type="text" class="form-control grey lighten-2 px-4" formControlName="idNombre" id="idNombre"
+            [class.is-invalid]="idNombreNoValido" placeholder="NOMBRE">
+        </div>
+        <div class="col-lg-6">
+          <input mdbInput type="text" class="form-control grey lighten-2 px-4" formControlName="idAppPa" id="idAppPa"
+            [class.is-invalid]="idAppPaNoValido" placeholder="APELLIDO PATERNO">
+        </div>
+        <div class="col-lg-6">
+          <input mdbInput type="email" class="form-control grey lighten-2 px-4" formControlName="idEmail" id="idEmail"
+            [class.is-invalid]="idEmailNoValido" placeholder="CORREO ELECTRONICO">
+        </div>
+        <div class="col-lg-6">
+          <input mdbInput type="text" class="form-control grey lighten-2 px-4" formControlName="idNit" id="idNit"
+            [class.is-invalid]="idNitNoValido" placeholder="NIT">
+        </div>
+        <div class="col-12">
+          <input mdbInput type="text" class="form-control grey lighten-2 px-4" formControlName="idDir" id="idDir"
+            [class.is-invalid]="idDirNoValido" placeholder="DIRECCION">
+        </div>
+      </div>
+
+      <div class="row justify-content-center">
+        <div class="p-4">
+          <button type="button" class="btn btn-rounded btn-shadow" (click)="guardar()" mdbWavesEffect
+            style="width: 230px; height: 80px;">
+            <span class="font-weight-bold my-auto" style="color: #003d99;font-size: 30px;">GUARDAR</span>
+          </button>
+        </div>
+        <div class="p-4">
+          <button type="button" class="btn btn-rounded btn-shadow" (click)="cancelar()" mdbWavesEffect
+            style="width: 230px; height: 80px;">
+            <span class="font-weight-bold my-auto" style="color: #003d99;font-size: 30px;">CANCELAR</span>
+          </button>
+        </div>
+      </div>
+    </form>
+  </div>
+
+  <div class="mt-auto">
+    <app-footerPt></app-footerPt>
+  </div>
+</div>

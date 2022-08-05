@@ -1,0 +1,102 @@
+#idCi {
+    background-color: #c6c6c6;
+    border-radius: 25px;
+    border: none;
+    color: #424242;
+    font-size: 25px;
+    box-shadow: 0px 10px 10px -6px #6E6E6E;
+    height: 50px;
+    margin-bottom: 35px;
+}
+
+#idCi:focus::placeholder {
+    color: transparent;
+}
+
+#idNit {
+    background-color: #c6c6c6;
+    border-radius: 25px;
+    border: none;
+    color: #424242;
+    font-size: 25px;
+    box-shadow: 0px 10px 10px -6px #6E6E6E;
+    height: 50px;
+    margin-bottom: 35px;
+}
+
+#idNit:focus::placeholder {
+    color: transparent;
+}
+
+#idNombre {
+    background-color: #c6c6c6;
+    border-radius: 25px;
+    border: none;
+    color: #424242;
+    font-size: 25px;
+    box-shadow: 0px 10px 10px -6px #6E6E6E;
+    height: 50px;
+    margin-bottom: 35px;
+}
+
+#idNombre:focus::placeholder {
+    color: transparent;
+}
+
+#idAppPa {
+    background-color: #c6c6c6;
+    border-radius: 25px;
+    border: none;
+    color: #424242;
+    font-size: 25px;
+    box-shadow: 0px 10px 10px -6px #6E6E6E;
+    height: 50px;
+    margin-bottom: 35px;
+}
+
+#idAppPa:focus::placeholder {
+    color: transparent;
+}
+
+#idEmail {
+    background-color: #c6c6c6;
+    border-radius: 25px;
+    border: none;
+    color: #424242;
+    font-size: 25px;
+    box-shadow: 0px 10px 10px -6px #6E6E6E;
+    height: 50px;
+    margin-bottom: 35px;
+}
+
+#idEmail:focus::placeholder {
+    color: transparent;
+}
+
+#idDir {
+    background-color: #c6c6c6;
+    border-radius: 25px;
+    border: none;
+    color: #424242;
+    font-size: 25px;
+    box-shadow: 0px 10px 10px -6px #6E6E6E;
+    height: 50px;
+    margin-bottom: 35px;
+}
+
+#idDir:focus::placeholder {
+    color: transparent;
+}
+
+#personaBusquedaBtn {
+    border-radius: 25px;
+    color: #0064dd;
+    background-color: white;
+    border: none;
+    /*  width: 100px; */
+}
+
+#div {
+    margin-left: auto;
+    margin-right: auto;
+}
