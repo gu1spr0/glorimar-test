@@ -3,7 +3,11 @@
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
-    "start": "ng serve",
+    "start": "ng s -o --port 3001",
+    "start1": "ng s -o --port 3001 -c=desa",
+    "start2": "ng s -o --port 3001 -c=production",
+    "start3": "ng s -o --port 3001 -c=qa",
+    "start4": "ng s -o --port 3001 -c=cert",
     "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",

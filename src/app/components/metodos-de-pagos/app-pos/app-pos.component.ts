@@ -19,6 +19,7 @@ import { environment } from 'src/environments/environment';
   styleUrls: ['./app-pos.component.css'],
 })
 export class AppPosComponent implements OnInit {
+  token;
   title = 'front-pos';
   vMonto = 0;
   vTransaccion = 0;
@@ -27,19 +28,24 @@ export class AppPosComponent implements OnInit {
   public vSeleccion: number = 0;
   constructor(
     private _auth: AuthenticationService,
-    private _payment: PaymentService,
+    private _payment: PaymentService
   ) {
-    //Solicitamos token
-    let data: Login = {
-      username: environment.usuarioPos,
-      password: environment.passowordPos,
-    };
-    this._auth.login(data);
-    let token = this._auth.getUserToken();
+    if (this._auth.getUserToken()) {
+      this.token = this._auth.getUserToken();
+    } else {
+      //Solicitamos token
+      let data: Login = {
+        username: environment.usuarioPos,
+        password: environment.passowordPos,
+      };
+      this._auth.login(data);
+      this.token = this._auth.getUserToken();
+    }
+
     //Nos conectamos y suscribimos
-    if (token) {
+    if (this.token) {
       let subscribir: Suscribir = {
-        token: token,
+        token: this.token,
         username: this._auth.getUsername()!,
         idCommerce: Number(this._auth.getCommerce()),
         idBranch: Number(this._auth.getBranch()),
@@ -74,7 +80,7 @@ export class AppPosComponent implements OnInit {
          * Inicialización de POS
          */
         let init: Init = {
-          token: this._auth.getUserToken()!,
+          token: this.token,
           idKiosk: Number(this._auth.getKiosk()),
           confirm: true,
           multi: false,
@@ -87,7 +93,7 @@ export class AppPosComponent implements OnInit {
          */
         if (this.vMonto != 0 && this.vMonto != null) {
           let chip: Chip = {
-            token: this._auth.getUserToken()!,
+            token: this.token,
             idKiosk: Number(this._auth.getKiosk()),
             amount: this.vMonto,
             multi: false,
@@ -101,7 +107,7 @@ export class AppPosComponent implements OnInit {
          */
         if (this.vMonto != 0 && this.vMonto != null) {
           let contactless: Contactless = {
-            token: this._auth.getUserToken()!,
+            token: this.token,
             idKiosk: Number(this._auth.getKiosk()),
             amount: this.vMonto,
             multi: false,
@@ -113,9 +119,9 @@ export class AppPosComponent implements OnInit {
         /**
          * Cancelar de pago
          */
-        if(this.vTransaccion >= 0){
+        if (this.vTransaccion >= 0) {
           let cancel: Cancel = {
-            token: this._auth.getUserToken()!,
+            token: this.token,
             idKiosk: Number(this._auth.getKiosk()),
             idTransaction: this.vTransaccion,
             multi: false,
@@ -128,7 +134,7 @@ export class AppPosComponent implements OnInit {
          * Cierre de lote
          */
         let close: Close = {
-          token: this._auth.getUserToken()!,
+          token: this.token,
           idKiosk: Number(this._auth.getKiosk()),
           confirm: true,
           multi: false,
@@ -142,10 +148,8 @@ export class AppPosComponent implements OnInit {
         console.log('Operación no válida');
         break;
     }
-    this._auth.logout();
   }
-  select(data: string){
-    console.log(">>>>>>>>>>>>>>>>>>>>"+data);
+  select(data: string) {
     this.vSeleccion = Number(data);
   }
 }
