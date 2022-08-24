@@ -12,6 +12,7 @@ import {
 import { Login } from 'src/app/interface/index.api';
 import { Item } from 'src/app/interface/item-interface';
 import { environment } from 'src/environments/environment';
+import { EncryptStorage } from 'encrypt-storage';
 
 @Component({
   selector: 'app-pos-root',
@@ -25,7 +26,11 @@ export class AppPosComponent implements OnInit {
   vTransaccion = 0;
   vTipo: Item[];
   vInicial = 'Seleccione opción';
+  banderaEstado: boolean = false;
   public vSeleccion: number = 0;
+
+  encryptLocalstorage = EncryptStorage('Secret_key');
+
   constructor(
     private _auth: AuthenticationService,
     private _payment: PaymentService
@@ -54,6 +59,8 @@ export class AppPosComponent implements OnInit {
       };
       this._payment.conectar(subscribir);
     }
+
+    this.vMonto = Number(this.encryptLocalstorage.getItem("deudaMonto").toFixed(2));
   }
   ngOnInit() {
     this.vTipo = [
@@ -74,6 +81,7 @@ export class AppPosComponent implements OnInit {
   }
 
   pagar() {
+    this.banderaEstado = true;
     switch (this.vSeleccion) {
       case 1:
         /**

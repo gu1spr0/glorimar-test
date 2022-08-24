@@ -47,6 +47,11 @@
     <button type="button" class="btn btn-rounded btn-shadow" (click)="pagar()" mdbWavesEffect>
       <span class="font-weight-bold my-auto" style="color: #003d99;font-size: 30px;">Realizar</span>
     </button>
+
+    <label class="text-uppercase my-3" *ngIf="banderaEstado" style="color: #c6c6c6;font-size: 35px;">
+      Mensaje prueba</label>
+    <label class="invisible my-3" *ngIf="!banderaEstado" style="color: #c6c6c6;font-size: 35px;">invisible</label>
+
   </div>
 
   <div class="mt-auto">
