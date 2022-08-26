@@ -22,6 +22,12 @@ export class WebsocketService {
     console.log("calling logout api via web socket");
     this.stompClient.send('/pgt360/qr', {}, JSON.stringify({ 'name': cliente, 'data': message }));
   }
+  _disconnect() {
+    if (this.stompClient !== null) {
+      this.stompClient.disconnect();
+    }
+    console.log("Disconnected");
+  }
   onMessageReceived(message) {
     console.log("Message Recieved from Server :: " + message);
     this.appComponent.Message(message);
