@@ -20,9 +20,10 @@ import { EncryptStorage } from 'encrypt-storage';
   styleUrls: ['./app-pos.component.css'],
 })
 export class AppPosComponent implements OnInit {
-  token;
   title = 'front-pos';
   vMonto = 0;
+  vIdKiosco = 0;
+  vIdBranch = 0;
   vTransaccion = 0;
   vTipo: Item[];
   vInicial = 'Seleccione opción';
@@ -35,32 +36,33 @@ export class AppPosComponent implements OnInit {
     private _auth: AuthenticationService,
     private _payment: PaymentService
   ) {
-    if (this._auth.getUserToken()) {
-      this.token = this._auth.getUserToken();
-    } else {
-      //Solicitamos token
-      let data: Login = {
-        username: environment.usuarioPos,
-        password: environment.passowordPos,
-      };
-      this._auth.login(data);
-      this.token = this._auth.getUserToken();
-    }
+    //Solicitamos token
+    let vUsername = environment.usuarioPos;
+    let vPassword = environment.passowordPos;
+    let data: Login = {
+      username: vUsername,
+      password: vPassword,
+    };
+    this._auth.login(data);
 
-    //Nos conectamos y suscribimos
-    if (this.token) {
-      let subscribir: Suscribir = {
-        token: this.token,
+    let token = this._auth.getUserToken();
+
+    if (token) {
+      this.vIdKiosco = environment.idKiosco;
+      this.vIdBranch = environment.idBranch;
+      let data: Suscribir = {
+        token: token,
         username: this._auth.getUsername()!,
         idCommerce: Number(this._auth.getCommerce()),
-        idBranch: Number(this._auth.getBranch()),
-        idKiosk: Number(this._auth.getKiosk()),
-        idDevice: Number(this._auth.getDevice()),
+        idBranch: this.vIdBranch,
+        idKiosk: this.vIdKiosco,
       };
-      this._payment.conectar(subscribir);
+      this._payment.conectar(data);
     }
 
-    this.vMonto = Number(this.encryptLocalstorage.getItem("deudaMonto").toFixed(2));
+    this.vMonto = Number(
+      this.encryptLocalstorage.getItem('deudaMonto').toFixed(2)
+    );
   }
   ngOnInit() {
     this.vTipo = [
@@ -88,8 +90,8 @@ export class AppPosComponent implements OnInit {
          * Inicialización de POS
          */
         let init: Init = {
-          token: this.token,
-          idKiosk: Number(this._auth.getKiosk()),
+          token: this._auth.getUserToken(),
+          idKiosk: this.vIdKiosco,
           confirm: true,
           multi: false,
         };
@@ -101,8 +103,8 @@ export class AppPosComponent implements OnInit {
          */
         if (this.vMonto != 0 && this.vMonto != null) {
           let chip: Chip = {
-            token: this.token,
-            idKiosk: Number(this._auth.getKiosk()),
+            token: this._auth.getUserToken(),
+            idKiosk: this.vIdKiosco,
             amount: this.vMonto,
             multi: false,
           };
@@ -115,8 +117,8 @@ export class AppPosComponent implements OnInit {
          */
         if (this.vMonto != 0 && this.vMonto != null) {
           let contactless: Contactless = {
-            token: this.token,
-            idKiosk: Number(this._auth.getKiosk()),
+            token: this._auth.getUserToken(),
+            idKiosk: this.vIdKiosco,
             amount: this.vMonto,
             multi: false,
           };
@@ -129,8 +131,8 @@ export class AppPosComponent implements OnInit {
          */
         if (this.vTransaccion >= 0) {
           let cancel: Cancel = {
-            token: this.token,
-            idKiosk: Number(this._auth.getKiosk()),
+            token: this._auth.getUserToken(),
+            idKiosk: this.vIdKiosco,
             idTransaction: this.vTransaccion,
             multi: false,
           };
@@ -142,8 +144,8 @@ export class AppPosComponent implements OnInit {
          * Cierre de lote
          */
         let close: Close = {
-          token: this.token,
-          idKiosk: Number(this._auth.getKiosk()),
+          token: this._auth.getUserToken(),
+          idKiosk: this.vIdKiosco,
           confirm: true,
           multi: false,
         };

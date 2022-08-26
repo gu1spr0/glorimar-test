@@ -1,5 +1,4 @@
 import { Injectable } from '@angular/core';
-import { WebsocketService } from 'src/app/servicios/websocket.service';
 import {
   Init,
   Chip,
@@ -9,23 +8,23 @@ import {
   Suscribir,
 } from 'src/app/interface/index.payment';
 import { VarApis } from 'src/app/settings/index.var';
+import { Poswebsocket } from './poswebsocket.service';
 
 @Injectable({
   providedIn: 'root',
 })
 export class PaymentService {
   stompClient: any;
-
-  constructor(private _socket: WebsocketService,) {
-    this.stompClient = this._socket.connectPos();
+  constructor(private _socket: Poswebsocket) {
+    this.stompClient = this._socket.connect();
   }
 
   conectar(data: Suscribir) {
     if (data.token) {
-      this.stompClient.connectPos(
+      this.stompClient.connect(
         { 'X-Authorization': 'Bearer ' + data.token },
         (frame: any) => {
-          let cadenaSubs = `/user/${data.username}/msg/${data.idCommerce}/${data.idBranch}/${data.idKiosk}/${data.idDevice}`;
+          let cadenaSubs = `/user/${data.username}/msg/${data.idCommerce}/${data.idBranch}/${data.idKiosk}`;
           this.stompClient.subscribe(cadenaSubs, (notifications: any) => {
             setTimeout(() => {
               console.log(notifications.body);

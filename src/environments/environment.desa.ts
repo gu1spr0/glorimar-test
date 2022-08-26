@@ -13,6 +13,8 @@ export const environment = {
   URLsocket: 'https://lyon.pagatodo360.net:88',
   IDKiosco: 'https://lyon.pagatodo360.net:4005',
   UrlPos: 'http://localhost:4701',
-  usuarioPos: 'kiosco',
+  usuarioPos: 'greentower',
   passowordPos: '12345',
+  idKiosco : 1,
+  idBranch : 1
 };

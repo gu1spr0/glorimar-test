@@ -21,7 +21,7 @@ export class CategoriasComponent implements OnInit {
     private router: Router,
     private spinner: NgxSpinnerService,
     private categoriaService: CategoriaService,
-    private cookie: NgxSecureCookieService,
+    private cookie: NgxSecureCookieService
   ) {
     this.cargarListaCategoria();
   }
