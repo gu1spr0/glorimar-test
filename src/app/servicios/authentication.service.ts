@@ -2,43 +2,47 @@ import { Injectable } from '@angular/core';
 import { VarApis, VarLocalStorage } from 'src/app/settings/index.var';
 import { ApiService } from 'src/app/servicios/api.service';
 import { Login } from 'src/app/interface/index.api';
+import { Suscribir } from '../interface/subscribe-interface';
+import { environment } from 'src/environments/environment';
+import { PaymentService } from './payment.service';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class AuthenticationService {
-
   constructor(
     private _api: ApiService,
-  ) { }
+    private _payment: PaymentService) {}
 
   /**
    * Login username y password
    * @param login Objeto
    */
   login(login: Login) {
-    this._api
-      .postDataValues(VarApis.URL_LOGIN, login)
-      .subscribe(response => {
+    this._api.postDataValues(VarApis.URL_LOGIN, login).subscribe((response) => {
+      if(response) {
         this.sessionStart(response);
-        setTimeout(() => {
-          console.log(response.message);
-        }, 300);
-      })
+        let vIdKiosco = environment.idKiosco;
+        let vIdBranch = environment.idBranch;
+        let data: Suscribir = {
+          token: this.getUserToken(),
+          username: this.getUsername(),
+          idCommerce: Number(this.getCommerce()),
+          idBranch: vIdKiosco,
+          idKiosk: vIdBranch,
+        };
+        this._payment.inicializarSocket(data);
+      }
+    });
   }
 
   /**
    * Salir de la aplicación
    */
   logout() {
-    this._api
-      .putDataValues(VarApis.URL_LOGIN, null)
-      .subscribe(response => {
-        setTimeout(() => {
-          console.log("Cerraste sesión");
-        }, 300)
-      })
-      localStorage.clear();
+    this._api.putDataValues(VarApis.URL_LOGOUT, null).subscribe((response) => {
+        console.log('Cerraste sesión');
+    });
   }
 
   /**

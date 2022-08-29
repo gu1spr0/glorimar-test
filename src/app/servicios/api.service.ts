@@ -33,9 +33,10 @@ export class ApiService {
    * 
    * @param url Endpoint a consumir
    * @param data Payload para registro
+   * @param header Datos de cabecera
    * @returns Obaservable
    */
   putDataValues(url: string, data: any): Observable<any> {
-    return this._http.put(url, data);
+    return this._http.put(url, data)
   }
 }

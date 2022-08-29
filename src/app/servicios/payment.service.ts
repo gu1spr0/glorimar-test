@@ -19,24 +19,33 @@ export class PaymentService {
     this.stompClient = this._socket.connect();
   }
 
-  conectar(data: Suscribir) {
+  inicializarSocket(data: Suscribir) {
     if (data.token) {
       this.stompClient.connect(
         { 'X-Authorization': 'Bearer ' + data.token },
         (frame: any) => {
-          let cadenaSubs = `/user/${data.username}/msg/${data.idCommerce}/${data.idBranch}/${data.idKiosk}`;
-          this.stompClient.subscribe(cadenaSubs, (notifications: any) => {
-            setTimeout(() => {
-              console.log(notifications.body);
-            }, 300);
-          });
+          if (!this.stompClient) {
+            return;
+          }
+
+          this._subscribeTopic(data);
         }
       );
-    } else {
-      setTimeout(() => {
-        console.log('No se encuentra Logueado');
-      }, 300);
     }
+  }
+
+  private _subscribeTopic(data: Suscribir) {
+    if (!this.stompClient) {
+      console.error('Error de configuración en websocket.');
+      return;
+    }
+
+    let cadenaSubs = `/user/${data.username}/msg/${data.idCommerce}/${data.idBranch}/${data.idKiosk}`;
+    this.stompClient.subscribe(cadenaSubs, (notifications: any) => {
+      if(notifications.body) {
+        console.log(notifications.body);
+      }
+    });
   }
 
   sendInit(init: Init) {
@@ -53,7 +62,11 @@ export class PaymentService {
 
   sendContactless(contactless: Contactless) {
     setTimeout(() => {
-      this.stompClient.send(VarApis.MSG_CONTACTLESS, {}, JSON.stringify(contactless));
+      this.stompClient.send(
+        VarApis.MSG_CONTACTLESS,
+        {},
+        JSON.stringify(contactless)
+      );
     }, 3000);
   }
 
@@ -69,7 +82,7 @@ export class PaymentService {
     }, 3000);
   }
 
-  desconectar() {
-    this._socket._disconnect();
+  closeSocket() {
+    this.stompClient.disconnect();
   }
 }

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnChanges, OnInit, SimpleChanges } from '@angular/core';
 import { AuthenticationService } from 'src/app/servicios/authentication.service';
 import { PaymentService } from 'src/app/servicios/payment.service';
 import {
@@ -27,6 +27,7 @@ export class AppPosComponent implements OnInit {
   vTransaccion = 0;
   vTipo: Item[];
   vInicial = 'Seleccione opción';
+  vConexion = false;
   banderaEstado: boolean = false;
   public vSeleccion: number = 0;
 
@@ -36,42 +37,21 @@ export class AppPosComponent implements OnInit {
     private _auth: AuthenticationService,
     private _payment: PaymentService
   ) {
+    this.vIdKiosco = environment.idKiosco;
+    this.vIdBranch = environment.idBranch;
     //Solicitamos token
     let vUsername = environment.usuarioPos;
     let vPassword = environment.passowordPos;
-    let data: Login = {
+    let login: Login = {
       username: vUsername,
       password: vPassword,
     };
-    this._auth.login(data);
-
-    let token = this._auth.getUserToken();
-
-    if (token) {
-      this.vIdKiosco = environment.idKiosco;
-      this.vIdBranch = environment.idBranch;
-      let data: Suscribir = {
-        token: token,
-        username: this._auth.getUsername()!,
-        idCommerce: Number(this._auth.getCommerce()),
-        idBranch: this.vIdBranch,
-        idKiosk: this.vIdKiosco,
-      };
-      this._payment.conectar(data);
-    }
-
+    this._auth.login(login);
+  }
+  ngOnInit() {
     this.vMonto = Number(
       this.encryptLocalstorage.getItem('deudaMonto').toFixed(2)
     );
-  }
-  ngOnInit() {
-    this.vTipo = [
-      { label: 'Inicialización', value: 1 },
-      { label: 'Pago con chip', value: 2 },
-      { label: 'Pago sin contacto', value: 3 },
-      { label: 'Cancelar', value: 4 },
-      { label: 'Cierre de caja', value: 5 },
-    ];
   }
 
   onKeyMonto(event: any) {
@@ -161,5 +141,9 @@ export class AppPosComponent implements OnInit {
   }
   select(data: string) {
     this.vSeleccion = Number(data);
+  }
+
+  ngOnDestroy() { 
+    this._payment.closeSocket();
   }
 }

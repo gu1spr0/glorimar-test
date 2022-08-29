@@ -16,7 +16,9 @@ export class MetodosDePagosComponent implements OnInit {
   metodoPago;
   encryptLocalstorage = EncryptStorage('Secret_key');
 
-  constructor(private router: Router, private spinner: NgxSpinnerService) {
+  constructor(
+    private router: Router,
+    private spinner: NgxSpinnerService) {
     this.tipoOperacionKiosko = this.encryptLocalstorage.getItem("tipoOperacionKiosko");
     this.deudaMonto = Number(this.encryptLocalstorage.getItem("deudaMonto")).toFixed(2);
     this.empresa = this.encryptLocalstorage.getItem("codigoEmpresa");
@@ -32,9 +34,9 @@ export class MetodosDePagosComponent implements OnInit {
     this.encryptLocalstorage.setItem('metodoPago', this.metodoPago);
   }
   enviarPos() {
-    this.router.navigate(['pago', 'app-pos'])
-    this.metodoPago = "ps";
-    this.encryptLocalstorage.setItem('metodoPago', this.metodoPago);
+      this.router.navigate(['pago', 'app-pos'])
+      this.metodoPago = "ps";
+      this.encryptLocalstorage.setItem('metodoPago', this.metodoPago);
   }
   enviarCaja() {
     this.router.navigate(['pago', 'formPersona'])

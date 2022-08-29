@@ -43,6 +43,7 @@ import { CajaComponent } from './components/caja/caja.component';
 import { PosComponent } from './components/metodos-de-pagos/pos/pos.component';
 import { ModalCodigoEmpresaComponent } from './components/modal-codigo-empresa/modal-codigo-empresa.component';
 import { AppRoutingModule } from './app-routing.module';
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
 
 export const options: Partial<IConfig> | (() => Partial<IConfig>) = null;
 
@@ -99,8 +100,10 @@ export const options: Partial<IConfig> | (() => Partial<IConfig>) = null;
     AppRoutingModule,
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA],
-  providers: [MDBSpinningPreloader,
-    NgxSecureCookieService],
+  providers: [
+    MDBSpinningPreloader,
+    NgxSecureCookieService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
