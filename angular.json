@@ -103,7 +103,9 @@
                     "builder": "@angular-devkit/build-angular:dev-server",
                     "options": {
                         "browserTarget": "mdbootstrap:build",
-                        "ssl": false
+                        "ssl": true,
+                        "sslKey": "src/assets/ssl/pgt360.key",
+                        "sslCert": "src/assets/ssl/lyon_pagatodo360_net.crt"
                     },
                     "configurations": {
                         "production": {
