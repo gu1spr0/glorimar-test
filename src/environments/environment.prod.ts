@@ -15,4 +15,6 @@ export const environment = {
   UrlPos: 'https://www.yoris.cloud:4701',
   usuarioPos: 'glorimar',
   passowordPos: '12345',
+  idKiosco : 2,
+  idBranch : 2
 };
